@@ -6,7 +6,7 @@ import com.project.Freelance_BE.Enum.Role;
 public record ClientDTO(
         Long id,
         String firstName,
-        String lasName,
+        String lastName,
         String email,
         Role role,
         File image,

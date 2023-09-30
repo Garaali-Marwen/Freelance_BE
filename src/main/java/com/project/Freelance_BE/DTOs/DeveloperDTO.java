@@ -8,7 +8,7 @@ import java.util.List;
 public record DeveloperDTO(
         Long id,
         String firstName,
-        String lasName,
+        String lastName,
         String email,
         Role role,
         File image,
