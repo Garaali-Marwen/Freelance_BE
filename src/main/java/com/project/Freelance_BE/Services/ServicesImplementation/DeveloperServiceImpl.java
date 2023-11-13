@@ -7,6 +7,7 @@ import com.project.Freelance_BE.Enum.Role;
 import com.project.Freelance_BE.Repositories.DeveloperRepository;
 import com.project.Freelance_BE.Services.DeveloperService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +19,12 @@ import java.util.stream.Collectors;
 public class DeveloperServiceImpl implements DeveloperService {
     private final DeveloperRepository developerRepository;
     private final DeveloperDTOMapper developerDTOMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public DeveloperDTO addDeveloper(Developer developer) {
         developer.setRole(Role.DEVELOPER);
+        developer.setPassword(passwordEncoder.encode(developer.getPassword()));
         return developerDTOMapper.apply(developerRepository.save(developer));
     }
 
@@ -43,8 +46,9 @@ public class DeveloperServiceImpl implements DeveloperService {
     public DeveloperDTO updateDeveloper(DeveloperDTO developerDTO) {
         Developer developer = developerRepository.findById(
                 developerDTO.id()).orElseThrow(() -> new NoSuchElementException(
-                        "Developer not found"
+                "Developer not found"
         ));
+        developer.setTel(developerDTO.tel());
         developer.setFirstName(developerDTO.firstName());
         developer.setLastName(developerDTO.lastName());
         developer.setEmail(developerDTO.email());

@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 @Data
 public class Client extends User {
-    private String tel;
     @OneToMany(mappedBy = "client")
     private List<Project> projects = new ArrayList<>();
     @OneToMany(mappedBy = "client")

@@ -32,6 +32,11 @@ public class DeveloperController {
         }
     }
 
+    @PostMapping(value = "/add")
+    public DeveloperDTO addDeveloper(@RequestBody Developer developer) {
+        return developerService.addDeveloper(developer);
+    }
+
     @GetMapping("/all")
     public List<DeveloperDTO> getAllDevelopers() {
         return developerService.getAllDevelopers();

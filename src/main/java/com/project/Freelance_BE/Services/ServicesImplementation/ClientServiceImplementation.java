@@ -7,6 +7,7 @@ import com.project.Freelance_BE.Enum.Role;
 import com.project.Freelance_BE.Repositories.ClientRepository;
 import com.project.Freelance_BE.Services.ClientService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +19,12 @@ import java.util.stream.Collectors;
 public class ClientServiceImplementation implements ClientService {
     private ClientRepository clientRepository;
     private ClientDTOMapper clientDTOMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public ClientDTO addClient(Client client) {
         client.setRole(Role.CLIENT);
+        client.setPassword(passwordEncoder.encode(client.getPassword()));
         return clientDTOMapper.apply(clientRepository.save(client));
     }
 

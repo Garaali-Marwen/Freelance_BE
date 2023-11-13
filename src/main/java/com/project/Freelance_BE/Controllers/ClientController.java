@@ -32,6 +32,11 @@ public class ClientController {
         }
     }
 
+    @PostMapping(value = "/add")
+    public ClientDTO addClient(@RequestBody Client client) {
+        return clientService.addClient(client);
+    }
+
     @GetMapping("/all")
     public List<ClientDTO> getAllClients() {
         return clientService.getAllClients();
