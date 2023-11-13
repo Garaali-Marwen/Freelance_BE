@@ -19,6 +19,7 @@ public class DeveloperDTOMapper implements Function<Developer, DeveloperDTO> {
                 developer.getFirstName(),
                 developer.getLastName(),
                 developer.getEmail(),
+                developer.getTel(),
                 developer.getRole(),
                 developer.getImage(),
                 developer.getQuizResults().stream().map(quizResultDTOMapper).collect(Collectors.toList())
